@@ -1,0 +1,45 @@
+.analytics-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 10px; /* Adjust as needed */
+}
+
+.form-container {
+    margin-bottom: 2px;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.submit-button {
+    background-color: #4caf50;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+}
+
+.error-message {
+    color: red;
+    margin-top: 10px;
+}
+
+.charts-container {
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+    max-width: 800px; /* Adjust width as needed */
+    margin-top: 20px;
+}
+
+.chart-item {
+    width: 300px; /* Adjust size of individual charts */
+    margin-bottom: 20px;
+}
+
+.chart-title {
+    text-align: center;
+    margin-bottom: 10px;
+}

@@ -187,6 +187,9 @@ app.post("/api/auth/librarians", async (req, res) => {
     }
 });
 
+const Transaction = require("./models/Transaction");
+const Book = require("./models/Books");
+
 app.listen(port, () => {
     console.log(`Server is running on port ${port}`);
 });
