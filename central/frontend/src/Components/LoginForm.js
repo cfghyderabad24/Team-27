@@ -29,7 +29,7 @@ const LoginForm = ({ onLogin }) => {
                 console.log(role);
                 localStorage.setItem("role", role); // Store the user's role in localStorage
                 onLogin();
-                navigate("/dashboard"); // Route to the dashboard using navigate
+                navigate("/librarian"); // Route to the dashboard using navigate
             } else {
                 setError("Login failed: Invalid response from server.");
                 console.error("Invalid response:", response);
