@@ -1,13 +1,42 @@
-const express = require('express')
-const cors=require('cors')
-const connectDB=require('./utils/connection')
-const app = express()
-require('dotenv').config();
+const express = require("express");
+const mongoose = require("mongoose");
+const bodyParser = require("body-parser");
+const dotenv = require("dotenv");
+const cors = require("cors");
 
-connectDB()
+// Load environment variables from .env file
+dotenv.config({ path: "./.env" });
 
-app.use(cors())
-const port = 3000
+// Import routes
+const bookRoutes = require("./routes/bookRoutes");
+const userRoutes = require("./routes/userRoute");
 
-app.get('/', (req, res) => res.send('Hello World!'))
-app.listen(port, () => console.log(`Example app listening on port ${port}!`))
+// Initialize express app
+const app = express();
+
+// Middleware
+app.use(cors());
+app.use(bodyParser.json());
+
+// MongoDB connection
+mongoose
+  .connect(process.env.MONGO_URL, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  })
+  .then(() => {
+    console.log("Connected to MongoDB");
+  })
+  .catch((err) => {
+    console.error("Error connecting to MongoDB", err);
+  });
+
+// Routes
+app.use("/api/v1/books", bookRoutes);
+app.use("/api/v1/users", userRoutes); // Use userRoutes for /api/v1/users
+
+// Start server
+const PORT = process.env.PORT || 5000;
+app.listen(PORT, () => {
+  console.log(`Server is running on port ${PORT}`);
+});
