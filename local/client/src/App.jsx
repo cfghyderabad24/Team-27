@@ -1,11 +1,16 @@
 import React from 'react';
-import Check from './components/Check';
+import Check from './Pages/Check';
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Home from './Pages/Home';
 
 const App = () => {
   return (
-    <div>
-      <Check />
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route element={<Home />} path='/'/>
+        <Route element={<Check />} path='/check'/>
+      </Routes>
+    </BrowserRouter>
   );
 };
 
