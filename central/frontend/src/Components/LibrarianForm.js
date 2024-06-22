@@ -1,9 +1,9 @@
-// Components/LibrarianForm.js
 import React, { useState } from "react";
 import axios from "axios";
 import "../Styles/LibrarianForm.css"; // Import the CSS file for LibrarianForm styling
+import Navbar from "./Navbar";
 
-function LibrarianForm() {
+function LibrarianForm({ onLogout }) {
     const [librarianName, setLibrarianName] = useState("");
     const [password, setPassword] = useState("");
 
@@ -31,29 +31,34 @@ function LibrarianForm() {
     };
 
     return (
-        <form onSubmit={handleSubmit} className="librarian-form">
-            <div className="form-group">
-                <label>Librarian Name</label>
-                <input
-                    type="text"
-                    value={librarianName}
-                    onChange={(e) => setLibrarianName(e.target.value)}
-                    required
-                />
+        <>
+            <Navbar onLogout={onLogout} /> {/* Include Navbar here */}
+            <div className="form-container">
+                <form onSubmit={handleSubmit} className="librarian-form">
+                    <div className="form-group">
+                        <label>Librarian Name</label>
+                        <input
+                            type="text"
+                            value={librarianName}
+                            onChange={(e) => setLibrarianName(e.target.value)}
+                            required
+                        />
+                    </div>
+                    <div className="form-group">
+                        <label>Password</label>
+                        <input
+                            type="password"
+                            value={password}
+                            onChange={(e) => setPassword(e.target.value)}
+                            required
+                        />
+                    </div>
+                    <button type="submit" className="submit-button">
+                        Submit
+                    </button>
+                </form>
             </div>
-            <div className="form-group">
-                <label>Password</label>
-                <input
-                    type="password"
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                    required
-                />
-            </div>
-            <button type="submit" className="submit-button">
-                Submit
-            </button>
-        </form>
+        </>
     );
 }
 

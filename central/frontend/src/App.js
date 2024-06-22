@@ -11,6 +11,7 @@ import Dashboard from "./Components/Dashboard";
 import ForgotPasswordForm from "./Components/ForgotPasswordForm";
 import ResetPassword from "./Components/ResetPassword";
 import LibrarianForm from "./Components/LibrarianForm";
+import Analytics from "./Components/Analytics";
 
 function App() {
     const [isLoggedIn, setIsLoggedIn] = useState(() => {
@@ -56,6 +57,7 @@ function App() {
                                 path="/librarian"
                                 element={<LibrarianForm />}
                             />
+                            <Route path="/analytics" element={<Analytics />} />
                         </>
                     ) : (
                         <Route path="*" element={<Navigate to="/login" />} />
