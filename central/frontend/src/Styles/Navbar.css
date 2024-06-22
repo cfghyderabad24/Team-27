@@ -1,24 +1,22 @@
 .navbar {
+    display: flex;
+    justify-content: center;
     background-color: #28a745;
-    padding: 10px 20px;
+    padding: 10px 0;
 }
 
 .navbar-brand {
-    color: white;
-    text-decoration: none;
-}
-
-.navbar-brand h1 {
-    margin: 0;
-    font-size: 24px;
-    cursor: pointer;
-}
-
-.navbar-brand h1:hover {
-    opacity: 0.8;
+    display: flex;
+    align-items: center;
 }
 
 .nav-link {
     color: white;
     text-decoration: none;
+    margin: 0 10px;
+}
+
+.nav-link h1 {
+    margin: 0;
+    font-size: 1.5rem;
 }
