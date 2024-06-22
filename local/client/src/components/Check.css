@@ -1,0 +1,76 @@
+.container {
+    max-width: 1000px;
+    margin: 0 auto; /* This centers the container horizontally */
+    padding: 20px;
+    border: 1px solid #e8bebe;
+    border-radius: 10px;
+    background-color: #f9f9f9;
+    margin-top: 50px; /* Adjust margin-top to center vertically */
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+  }
+  body {
+    background-color: #f0f0f0; /* Replace with your desired background color */
+  }
+  
+
+  h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    color:black;
+  }
+  
+  .form-group {
+    margin-bottom: 15px;
+  }
+  
+  label {
+    display: block;
+    margin-bottom: 5px;
+    color:black;
+  }
+  
+  input {
+    width: 100%;
+    padding: 8px;
+    box-sizing: border-box;
+    background-color: white;
+    border: 1px solid #000000;
+    border-radius: 5px;
+  }
+  
+  button {
+    width: 100%;
+    padding: 10px;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  .button-checkin {
+    display: flex;
+    justify-content: space-between; /* Ensures equal space between buttons */
+    margin-top: 20px; /* Space between form and buttons */
+  }
+  
+  .check-button {
+    flex: 1; /* Equal width for both buttons */
+    margin-right: 10px; /* Space between buttons */
+  }
+  
+  .check-button:last-child {
+    margin-right: 0; /* No margin on the last button */
+  }
+  
+  
+  button:hover {
+    background-color: #218838;
+  }
+
+  .error{
+    color:red;
+    font-size:13px;
+  }
