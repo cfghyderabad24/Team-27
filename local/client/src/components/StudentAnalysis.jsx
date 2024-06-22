@@ -40,12 +40,7 @@ function StudentAnalysis() {
       const response = await axios.get(`http://localhost:3000/studentAnalysis/getDetails/${studentId}`);
       const data = response.data;
 
-      setStudentDetails({
-        studentName: data.studentName,
-        studentId: data.studentId,
-        grade: data.grade,
-        totalBooksCheckedOut: data.totalBooksCheckedOut
-      });
+      setStudentDetails(data.details);
 
       const barList = data.barList;
       const pieList = data.pieList;
