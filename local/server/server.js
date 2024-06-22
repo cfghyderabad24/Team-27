@@ -9,6 +9,7 @@ const Librarian = require("./models/librarianModel");
 const Student = require("./models/studentModel");
 const Book = require("./models/bookModel");
 const transaction = require("./routes/transaction");
+const studentAnalysis=require("./routes/studentAnalysis")
 const connection=require('./utils/connection')
 
 dotenv.config();
@@ -21,6 +22,7 @@ app.use(express.json());
 app.use(cors());
 
 app.use('/transaction',transaction)
+app.use('/studentAnalysis',studentAnalysis)
 
 // MongoDB Connection
 connection()
