@@ -6,6 +6,7 @@ const bcrypt = require("bcryptjs");
 const cors = require("cors");
 const dotenv = require("dotenv");
 const Librarian = require("./models/librarianModel");
+const connection=require('./utils/connection')
 
 dotenv.config();
 
@@ -17,11 +18,7 @@ app.use(express.json());
 app.use(cors());
 
 // MongoDB Connection
-const dbURI = process.env.MONGODB_URI;
-mongoose.connect(dbURI, { useNewUrlParser: true, useUnifiedTopology: true });
-const db = mongoose.connection;
-db.on("error", console.error.bind(console, "MongoDB connection error:"));
-db.once("open", () => console.log("Connected to MongoDB"));
+connection()
 
 // Login Route
 app.post("/login", async (req, res) => {
