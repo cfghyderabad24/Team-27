@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import './Check.css';
+import axios from 'axios'
 
 const Check = () => {
   const [formData, setFormData] = useState({
@@ -51,10 +52,45 @@ const Check = () => {
     }
   };
 
-  const handleSubmit = (e) => {
+  const handleIssued = async(e) => {
+    e.preventDefault();
+    axios.post('http://localhost:3000/transaction/checkout',{
+      student_roll: formData.studentId,
+      isbn: formData.bookId
+    }).then(r=>{
+      alert(r.data)
+    }).catch(e=>{
+      console.log(e)
+      alert("Server Error")
+    })
+    setFormData({
+      studentName: '',
+      studentId: '',
+      bookTitle: '',
+      bookId: '',
+    });
+    setFormValid(false); // Reset form validation state after submission
+    setErrors({
+      studentName: '',
+      studentId: '',
+      bookTitle: '',
+      bookId: '',
+    });
+  };
+  const handleReturned = (e) => {
     e.preventDefault();
     console.log('Form Data:', formData);
     // Perform your check-in/check-out logic here
+    axios.post('http://localhost:3000/transaction/checkin',{
+      student_roll: formData.studentId,
+      isbn: formData.bookId
+    }).then(r=>{
+      alert(r.data)
+    }).catch(e=>{
+      console.log(e)
+      alert("Server Error")
+    })
+    axios.post('')
     setFormData({
       studentName: '',
       studentId: '',
@@ -70,18 +106,10 @@ const Check = () => {
     });
   };
 
-  const issued = () => {
-    alert("Book Issued Successfully");
-  };
-
-  const returned = () => {
-    alert("Book returned Successfully");
-  };
-
   return (
     <div className="container">
       <h2>Check-In / Check-Out</h2>
-      <form onSubmit={handleSubmit}>
+      <form>
         <div className="form-group">
           <label>Student Name</label>
           <input
@@ -135,11 +163,11 @@ const Check = () => {
           {errors.bookId && <p className="error">{errors.bookId}</p>}
         </div>
         <div className="button-checkin">
-          <button type="submit" onClick={returned} className="check-button" disabled={!formValid}>
-            CheckIn
+          <button type="submit" onClick={handleReturned} className="check-button" >
+            Return
           </button>
-          <button type="submit" onClick={issued} className="check-button" disabled={!formValid}>
-            CheckOut
+          <button type="submit" onClick={handleIssued} className="check-button" >
+            Issue
           </button>
         </div>
       </form>
