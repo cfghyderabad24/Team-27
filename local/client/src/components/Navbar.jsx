@@ -7,7 +7,7 @@ const Navbar = () => {
         <nav className="navbar">
             <ul>
                 <li>
-                    <NavLink to="/home" exact activeClassName="active">
+                    <NavLink to="/homepage" exact activeClassName="active">
                         Home
                     </NavLink>
                 </li>
@@ -24,11 +24,6 @@ const Navbar = () => {
                 <li>
                     <NavLink to="/libraryanalysis" activeClassName="active">
                         Library Analysis
-                    </NavLink>
-                </li>
-                <li>
-                    <NavLink to="/bookmanage" activeClassName="active">
-                        Book Management
                     </NavLink>
                 </li>
                 <li>

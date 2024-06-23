@@ -15,6 +15,7 @@ import {
   ArcElement,
   PointElement,
 } from "chart.js";
+import Navbar from "./Navbar";
 
 ChartJS.register(
   CategoryScale,
@@ -42,7 +43,9 @@ function StudentAnalysis() {
 
   const handleNewClick = async () => {
     try {
-      const response = await axios.get(`http://localhost:3001/studentAnalysis/getDetails/${studentId}`);
+      const response = await axios.get(
+        `http://localhost:3001/studentAnalysis/getDetails/${studentId}`
+      );
       const data = response.data;
 
       setStudentDetails(data.details);
@@ -62,7 +65,14 @@ function StudentAnalysis() {
         datasets: [
           {
             label: "Books by Level",
-            backgroundColor: ["green", "red", "orange", "white", "darkblue", "yellow"],
+            backgroundColor: [
+              "green",
+              "red",
+              "orange",
+              "white",
+              "darkblue",
+              "yellow",
+            ],
             data: Object.values(barList),
           },
         ],
@@ -79,7 +89,9 @@ function StudentAnalysis() {
         ],
       });
 
-      const lineResponse = await axios.get(`http://localhost:3001/studentAnalysis/getLine/${studentId}`);
+      const lineResponse = await axios.get(
+        `http://localhost:3001/studentAnalysis/getLine/${studentId}`
+      );
       const lineData = lineResponse.data;
       const lineMonth = Object.keys(lineData);
 
@@ -104,83 +116,87 @@ function StudentAnalysis() {
   };
 
   return (
-    <div style={{ width: "100%" }}>
-      <Container>
-        <Row>
-          <Col>
-            <Card>
-              <Card.Body>
-                <Card.Title>Enter Student ID</Card.Title>
-                <Form.Group controlId="formStudentId">
-                  <Form.Control
-                    type="text"
-                    placeholder="Enter Student ID"
-                    value={studentId}
-                    onChange={handleInputChange}
-                  />
-                </Form.Group>
-                <Button className="mt-2" onClick={handleNewClick}>
-                  Enter
-                </Button>
-              </Card.Body>
-            </Card>
-          </Col>
-        </Row>
+    <div>
+      <Navbar />
+      <div style={{ width: "100%" }}>
+        <Container>
+          <Row>
+            <Col>
+              <Card>
+                <Card.Body>
+                  <Card.Title>Enter Student ID</Card.Title>
+                  <Form.Group controlId="formStudentId">
+                    <Form.Control
+                      type="text"
+                      placeholder="Enter Student ID"
+                      value={studentId}
+                      onChange={handleInputChange}
+                    />
+                  </Form.Group>
+                  <Button className="mt-2" onClick={handleNewClick}>
+                    Enter
+                  </Button>
+                </Card.Body>
+              </Card>
+            </Col>
+          </Row>
 
-        {showCharts && studentDetails && (
-          <>
-            <Row>
-              <Col>
-                <Card>
-                  <Card.Body>
-                    <Card.Title>Student Details</Card.Title>
-                    <p>
-                      <strong>ID:</strong> {studentDetails.studentId}
-                    </p>
-                    <p>
-                      <strong>Name:</strong> {studentDetails.studentName}
-                    </p>
-                    <p>
-                      <strong>Grade:</strong> {studentDetails.grade}
-                    </p>
-                    <p>
-                      <strong>Total Books Checked Out:</strong> {studentDetails.totalBooksCheckedOut}
-                    </p>
-                  </Card.Body>
-                </Card>
-              </Col>
-            </Row>
-            <div className="student">
+          {showCharts && studentDetails && (
+            <>
               <Row>
-                <Col md={4}>
+                <Col>
                   <Card>
                     <Card.Body>
-                      <Card.Title>Books by Level</Card.Title>
-                      {barChartData && <Bar data={barChartData} />}
-                    </Card.Body>
-                  </Card>
-                </Col>
-                <Col md={4}>
-                  <Card>
-                    <Card.Body>
-                      <Card.Title>Books by Genre</Card.Title>
-                      {pieChartData && <Pie data={pieChartData} />}
-                    </Card.Body>
-                  </Card>
-                </Col>
-                <Col md={4}>
-                  <Card>
-                    <Card.Body>
-                      <Card.Title>Monthly Data</Card.Title>
-                      {lineChartData && <Line data={lineChartData} />}
+                      <Card.Title>Student Details</Card.Title>
+                      <p>
+                        <strong>ID:</strong> {studentDetails.studentId}
+                      </p>
+                      <p>
+                        <strong>Name:</strong> {studentDetails.studentName}
+                      </p>
+                      <p>
+                        <strong>Grade:</strong> {studentDetails.grade}
+                      </p>
+                      <p>
+                        <strong>Total Books Checked Out:</strong>{" "}
+                        {studentDetails.totalBooksCheckedOut}
+                      </p>
                     </Card.Body>
                   </Card>
                 </Col>
               </Row>
-            </div>
-          </>
-        )}
-      </Container>
+              <div className="student">
+                <Row>
+                  <Col md={4}>
+                    <Card>
+                      <Card.Body>
+                        <Card.Title>Books by Level</Card.Title>
+                        {barChartData && <Bar data={barChartData} />}
+                      </Card.Body>
+                    </Card>
+                  </Col>
+                  <Col md={4}>
+                    <Card>
+                      <Card.Body>
+                        <Card.Title>Books by Genre</Card.Title>
+                        {pieChartData && <Pie data={pieChartData} />}
+                      </Card.Body>
+                    </Card>
+                  </Col>
+                  <Col md={4}>
+                    <Card>
+                      <Card.Body>
+                        <Card.Title>Monthly Data</Card.Title>
+                        {lineChartData && <Line data={lineChartData} />}
+                      </Card.Body>
+                    </Card>
+                  </Col>
+                </Row>
+              </div>
+            </>
+          )}
+        </Container>
+      </div>
     </div>
   );
 }
