@@ -5,6 +5,15 @@ import './Navbar.css'; // Create this file for Navbar-specific styles
 const Navbar = () => {
     return (
         <nav className="navbar">
+            <div style={{
+                fontFamily:"georgea",
+                fontSize:"30px",
+                fontWeight:"bold",
+                marginLeft:"20px",
+                color:"#fff"
+            }}>
+                R2R
+            </div>
             <ul>
                 <li>
                     <NavLink to="/homepage" exact activeClassName="active">

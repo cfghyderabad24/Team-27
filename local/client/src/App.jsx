@@ -5,6 +5,7 @@ import Home from './Pages/Home';
 import StudentAnalysis from "./components/StudentAnalysis";
 // import Navbar from "./Navbar";
 import LibraryAnalysis from "./components/LibraryAnalysis"
+import HomePage from "./Pages/HomePage"
 
 
 const App = () => {
@@ -16,6 +17,9 @@ const App = () => {
         <Route path="/studentanalysis" element={<StudentAnalysis/>}/>
         <Route path="/libraryanalysis" element={<LibraryAnalysis />}/>
         <Route path="/login" element={<Check />}/>
+        <Route path="/homepage" element={<HomePage />}/>
+
+
 
       </Routes>
     </BrowserRouter>

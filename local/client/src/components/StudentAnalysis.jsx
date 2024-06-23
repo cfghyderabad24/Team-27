@@ -114,7 +114,9 @@ function StudentAnalysis() {
       alert("server error");
     }
   };
-
+  const handleReload = () => {
+    window.location.reload();
+  };
   return (
     <div>
       <Navbar />
@@ -195,6 +197,7 @@ function StudentAnalysis() {
               </div>
             </>
           )}
+      <button onClick={handleReload}>Back</button>
         </Container>
       </div>
     </div>
