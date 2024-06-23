@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import axios from "axios";
 import "../Styles/LibrarianForm.css"; // Import the CSS file for LibrarianForm styling
 import Navbar from "./Navbar";
-import Navbar from "./Navbar";
 
 function LibrarianForm({ onLogout }) {
     const [librarianName, setLibrarianName] = useState("");
