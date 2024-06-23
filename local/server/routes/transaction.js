@@ -31,7 +31,7 @@ router.post('/checkin',async(req,res)=>{
         const findBook = await book.findOne({ isbn });
         console.log(findBook)
 
-        if (!findBook) {
+        if (findBook===null) {
             res.status(404).send('Book not found.');
             return;
         }
