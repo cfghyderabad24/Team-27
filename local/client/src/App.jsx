@@ -5,16 +5,18 @@ import Home from './Pages/Home';
 import StudentAnalysis from "./components/StudentAnalysis";
 // import Navbar from "./Navbar";
 import LibraryAnalysis from "./components/LibraryAnalysis"
-// import Home from "./Home"
+
 
 const App = () => {
   return (
     <BrowserRouter>
       <Routes>
-        <Route element={<Home />} path='/'/>
+        <Route element={<Home />} path='/home'/>
         <Route element={<Check />} path='/check'/>
         <Route path="/studentanalysis" element={<StudentAnalysis/>}/>
         <Route path="/libraryanalysis" element={<LibraryAnalysis />}/>
+        <Route path="/login" element={<Check />}/>
+
       </Routes>
     </BrowserRouter>
   );
