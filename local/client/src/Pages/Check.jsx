@@ -54,7 +54,7 @@ const Check = () => {
 
   const handleIssued = async(e) => {
     e.preventDefault();
-    axios.post('http://localhost:3000/transaction/checkout',{
+    axios.post('http://localhost:3001/transaction/checkout',{
       student_roll: formData.studentId,
       isbn: formData.bookId
     }).then(r=>{
@@ -81,7 +81,7 @@ const Check = () => {
     e.preventDefault();
     console.log('Form Data:', formData);
     // Perform your check-in/check-out logic here
-    axios.post('http://localhost:3000/transaction/checkin',{
+    axios.post('http://localhost:3001/transaction/checkin',{
       student_roll: formData.studentId,
       isbn: formData.bookId
     }).then(r=>{

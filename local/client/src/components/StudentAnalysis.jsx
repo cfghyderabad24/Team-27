@@ -42,7 +42,7 @@ function StudentAnalysis() {
 
   const handleNewClick = async () => {
     try {
-      const response = await axios.get(`http://localhost:3000/studentAnalysis/getDetails/${studentId}`);
+      const response = await axios.get(`http://localhost:3001/studentAnalysis/getDetails/${studentId}`);
       const data = response.data;
 
       setStudentDetails(data.details);
@@ -79,7 +79,7 @@ function StudentAnalysis() {
         ],
       });
 
-      const lineResponse = await axios.get(`http://localhost:3000/studentAnalysis/getLine/${studentId}`);
+      const lineResponse = await axios.get(`http://localhost:3001/studentAnalysis/getLine/${studentId}`);
       const lineData = lineResponse.data;
       const lineMonth = Object.keys(lineData);
 
