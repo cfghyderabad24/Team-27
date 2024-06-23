@@ -3,6 +3,19 @@
   margin: 0 auto;
   padding: 2rem;
   text-align: center;
+  /* width: 100%; */
+  color: black;
+}
+
+.container{
+  width:25vh;
+}
+
+.student{
+  /* width: 100%; */
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
 }
 
 .logo {

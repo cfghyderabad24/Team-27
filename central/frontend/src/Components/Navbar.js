@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import "../Styles/Navbar.css";
 
-function Navbar() {
+function Navbar({ isLoggedIn }) {
     return (
         <nav className="navbar">
             <div className="navbar-content">
