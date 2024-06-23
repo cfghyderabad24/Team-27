@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Container, Row, Col, Button, Card, Form } from "react-bootstrap";
-import { Bar, Pie } from "react-chartjs-2";
+import { Bar, Pie, Line } from "react-chartjs-2";
 import axios from "axios";
 import "../App.css";
 import {
@@ -8,20 +8,24 @@ import {
   CategoryScale,
   LinearScale,
   BarElement,
+  LineElement,
   Title,
   Tooltip,
   Legend,
   ArcElement,
+  PointElement,
 } from "chart.js";
 
 ChartJS.register(
   CategoryScale,
   LinearScale,
   BarElement,
+  LineElement,
   Title,
   Tooltip,
   Legend,
-  ArcElement
+  ArcElement,
+  PointElement
 );
 
 function StudentAnalysis() {
@@ -30,6 +34,7 @@ function StudentAnalysis() {
   const [studentDetails, setStudentDetails] = useState(null);
   const [barChartData, setBarChartData] = useState(null);
   const [pieChartData, setPieChartData] = useState(null);
+  const [lineChartData, setLineChartData] = useState(null);
 
   const handleInputChange = (e) => {
     setStudentId(e.target.value);
@@ -70,6 +75,23 @@ function StudentAnalysis() {
             label: "Books by Genre",
             backgroundColor: ["#FF6384", "#36A2EB", "#FFCE56", "#4BC0C0"],
             data: Object.values(pieList),
+          },
+        ],
+      });
+
+      const lineResponse = await axios.get(`http://localhost:3000/studentAnalysis/getLine/${studentId}`);
+      const lineData = lineResponse.data;
+      const lineMonth = Object.keys(lineData);
+
+      setLineChartData({
+        labels: lineMonth,
+        datasets: [
+          {
+            label: "Monthly Data",
+            data: Object.values(lineData),
+            borderColor: "blue",
+            backgroundColor: "lightblue",
+            fill: false,
           },
         ],
       });
@@ -130,7 +152,7 @@ function StudentAnalysis() {
             </Row>
             <div className="student">
               <Row>
-                <Col md={6}>
+                <Col md={4}>
                   <Card>
                     <Card.Body>
                       <Card.Title>Books by Level</Card.Title>
@@ -138,11 +160,19 @@ function StudentAnalysis() {
                     </Card.Body>
                   </Card>
                 </Col>
-                <Col md={6}>
+                <Col md={4}>
                   <Card>
                     <Card.Body>
                       <Card.Title>Books by Genre</Card.Title>
                       {pieChartData && <Pie data={pieChartData} />}
+                    </Card.Body>
+                  </Card>
+                </Col>
+                <Col md={4}>
+                  <Card>
+                    <Card.Body>
+                      <Card.Title>Monthly Data</Card.Title>
+                      {lineChartData && <Line data={lineChartData} />}
                     </Card.Body>
                   </Card>
                 </Col>
